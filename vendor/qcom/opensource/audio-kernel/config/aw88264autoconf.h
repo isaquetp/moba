@@ -1,0 +1,1 @@
+#define CONFIG_SND_SOC_AW88264 1

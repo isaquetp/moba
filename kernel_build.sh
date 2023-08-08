@@ -1,0 +1,11 @@
+export my_top_dir=`pwd`
+
+export PATH=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin:$PATH
+
+mkdir -p out/host/linux-x86/bin
+cp $my_top_dir/prebuilts/gcc/linux-x86/bin/dtc out/host/linux-x86/bin/
+cp $my_top_dir/prebuilts/gcc/linux-x86/bin/ufdt_apply_overlay out/host/linux-x86/bin/
+
+make -C kernel/msm-4.19 -j16 O=../../out/target/product/moba_kernel/obj/kernel/msm-4.19 REAL_CC=$my_top_dir/prebuilts/llvm-arm-toolchain-ship/8.0/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- DTC_EXT=$my_top_dir/out/host/linux-x86/bin/dtc DTC_OVERLAY_TEST_EXT=$my_top_dir/out/host/linux-x86/bin/ufdt_apply_overlay CONFIG_BUILD_ARM64_DT_OVERLAY=y HOSTCC=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-gcc HOSTAR=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar HOSTLD=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld 'HOSTCFLAGS=-I${my_top_dir}/kernel/msm-4.19/include/uapi -I/usr/include -I/usr/include/x86_64-linux-gnu -L/usr/lib -L/usr/lib/x86_64-linux-gnu' 'HOSTLDFLAGS=-L/usr/lib -L/usr/lib/x86_64-linux-gnu' ARCH=arm64 CROSS_COMPILE=$my_top_dir/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android- vendor/kona-perf_defconfig
+
+make -C kernel/msm-4.19 -j16 O=../../out/target/product/moba_kernel/obj/kernel/msm-4.19 REAL_CC=$my_top_dir/prebuilts/llvm-arm-toolchain-ship/8.0/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- DTC_EXT=$my_top_dir/out/host/linux-x86/bin/dtc DTC_OVERLAY_TEST_EXT=$my_top_dir/out/host/linux-x86/bin/ufdt_apply_overlay CONFIG_BUILD_ARM64_DT_OVERLAY=y HOSTCC=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-gcc HOSTAR=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ar HOSTLD=$my_top_dir/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8/bin/x86_64-linux-ld 'HOSTCFLAGS=-I${my_top_dir}/kernel/msm-4.19/include/uapi -I/usr/include -I/usr/include/x86_64-linux-gnu -L/usr/lib -L/usr/lib/x86_64-linux-gnu' 'HOSTLDFLAGS=-L/usr/lib -L/usr/lib/x86_64-linux-gnu' ARCH=arm64 CROSS_COMPILE=$my_top_dir/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
